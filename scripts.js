@@ -4,6 +4,7 @@ let colors = ["black", "red", "green", "orange", "yellow", "purple", "brown",
 ]
 const title = document.querySelector("#title");
 const manualColor = document.querySelector("#manual");
+const backgroundSelector = document.querySelector("#background")
 
 function colorFunction() {
     function getRandom() {
@@ -12,13 +13,9 @@ function colorFunction() {
         random = Math.floor(random);
         return random;
     }
-    let currColor = title.style.color;
+    let currColor = window.getComputedStyle(document.querySelector("#title")).color;
     let color = getRandom();
-    for (let i = color; colors[i] == currColor; i = getRandom()) {
-        if (currColor != colors[i]) {
-            title.style.setProperty("color", colors[color]);
-        }
-    }
+    console.log(currColor);
     title.style.setProperty("color", colors[color]);
 
 }
@@ -26,6 +23,7 @@ function colorFunction() {
 function sizeFunction() {
     let size = document.querySelector("#textField").value;
     title.style.setProperty("font-size", `${size}px`);
+    return false;
 
 }
 
@@ -38,8 +36,13 @@ function manualChangeColor() {
     }
 }
 
+function backgroundChanger() {
+    document.querySelector("body").style.background = this.value;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('button').onclick = colorFunction;
     document.querySelector('form').onsubmit = sizeFunction;
     manualColor.onclick = manualChangeColor;
+    backgroundSelector.onchange = backgroundChanger;
 })
