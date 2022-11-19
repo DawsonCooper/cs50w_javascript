@@ -50,6 +50,10 @@ function backgroundChanger() {
     document.querySelector("body").style.background = this.value;
     localStorage.setItem("bgColor", this.value);
 }
+function myAnime() {
+    const animationDiv = document.querySelector('#animation');
+    animationDiv.style.animationPlay = 'paused';
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('button').onclick = colorFunction;
