@@ -21,8 +21,18 @@ function colorFunction() {
 }
 
 function sizeFunction() {
+    document.querySelector('#submit').onkeyup = () => {
+        document.querySelector('#submit').disabled = false;
+    }
     let size = document.querySelector("#textField").value;
+
     title.style.setProperty("font-size", `${size}px`);
+    const para = document.createElement("p");
+    para.innerHTML = `You set the size of the title to ${size} pixels.`;
+    document.getElementById("size-change-container").appendChild(para);
+    document.querySelector('#textField').value = '';
+    document.querySelector('#submit').disabled = true;
+
     return false;
 
 }
@@ -38,11 +48,20 @@ function manualChangeColor() {
 
 function backgroundChanger() {
     document.querySelector("body").style.background = this.value;
+    localStorage.setItem("bgColor", this.value);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('button').onclick = colorFunction;
+    // This disables the submit button while the textField is empty
+    document.querySelector('#submit').disabled = true;
+    document.querySelector('#textField').onkeyup = () => {
+        document.querySelector('#submit').disabled = false;
+    }
     document.querySelector('form').onsubmit = sizeFunction;
-    manualColor.onclick = manualChangeColor;
+    setInterval(manualChangeColor, 1000);
+    //manualColor.onclick = manualChangeColor;
+    document.querySelector("body").style.background = localStorage.getItem("bgColor")
     backgroundSelector.onchange = backgroundChanger;
+
 })

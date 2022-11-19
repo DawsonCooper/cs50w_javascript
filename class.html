@@ -12,13 +12,16 @@
             <div>
                 <h1 id="title">Javascript Lecture</h1>
                 <button>Change Title Color</button>
-                <form action="">
-                    <input autofocus type="text" placeholder="Tilte Size? " id="textField">
-                    <input type="submit">
-                </form>
+                <div id="size-change-container">
+                    <form>
+                        <input autofocus type="text" placeholder="Tilte Size? " id="textField">
+                        <input id="submit" type="submit">
+                    </form>
+                </div>
                 <h1 id="manual" data-color="blue">Manual Color</h1>
                 <h2>Background Color</h2>
                 <select id="background">
+                    <option value="white">Default</option>
                     <option value="red">Red</option>
                     <option value="Green">Green</option>
                     <option value="Blue">Blue</option>
